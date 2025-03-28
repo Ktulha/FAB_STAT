@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabric Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{% if fabric %}Edit Fabric{% else %}Create Fabric{% endif %}</h1>
+        <form method="POST" action="{{ url_for('.save_fabric', fabric_id=fabric.id if fabric else -1) }}">
+            <label for="name">Fabric Name:</label>
+            <input type="text" id="name" name="name" value="{{ fabric.name if fabric else '' }}" required>
+            
+            <label for="description">Description:</label>
+            <textarea id="description" name="description">{{ fabric.description if fabric else '' }}</textarea>
+            
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>

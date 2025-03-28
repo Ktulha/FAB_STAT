@@ -1,0 +1,4 @@
+fabric_name,fabric_description,product_name,feature_name,description,barcode,picture,fabric_cost,active
+Cotton,Cotton fabric for clothing,T-Shirt,Comfortable cotton t-shirt,High-quality cotton t-shirt,1234567890,tshirt.png,10.99,True
+Silk,Silk fabric for dresses,Dress,Elegant silk dress,Beautiful silk dress,0987654321,dress.png,29.99,True
+Wool,Wool fabric for sweaters,Sweater,Warm wool sweater,Cozy wool sweater,1122334455,sweater.png,19.99,True

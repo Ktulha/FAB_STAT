@@ -1,0 +1,40 @@
+<!--div class="tableFixHead">
+<table class="table container-fluid"
+<table class="fixed_header">
+    <thead class="dark_color_set ">
+        <tr>
+            <th>Наименование</th>
+            <th>Рисунок</th>
+            <th>Остаток</th>
+            <th>Количество SKU</th>
+            <th>Текущий расход</th>
+            <th>Запас в днях</th>
+            <th>Ближайшая поставка</th>
+        </tr>
+    </thead>
+    <tbody class="light_color_set ">
+     
+        {% for fabric in fabrics %}
+
+{% include 'components/fabric_item_row.html' %}
+{% endfor %}
+    </tbody>
+</table>
+</div>
+-->
+<div class="container-fluid">
+<div class="grid_table">
+    <span class ="dark_color_set grid-fixed-head">Наименование</span>
+    <span class ="dark_color_set grid-fixed-head">Рисунок</span>
+    <span class ="dark_color_set grid-fixed-head">Остаток</span>
+    <span class ="dark_color_set grid-fixed-head">Количество SKU</span>
+    <span class ="dark_color_set grid-fixed-head">Текущий расход</span>
+    <span class ="dark_color_set grid-fixed-head">Запас в днях</span>
+    <span class ="dark_color_set grid-fixed-head">Ближайшая поставка</span>
+
+{% for fabric in fabrics %}
+
+{% include 'components/fabric_item_row.html' %}
+{% endfor %}
+</div>   
+</div>

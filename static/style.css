@@ -1,0 +1,111 @@
+/* Basic CSS Styles */
+:root{
+    --main-color: #255b91;
+    --secondary-color: #ddd;
+    --bg-hover-color: #a4cedb;
+    --light-color:#fefefe;
+    --text-color1:#333;
+    
+
+}
+
+*,ul,div,a,a:hover{
+    text-decoration: none;
+    list-style: none;
+
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--secondary-color);
+    margin: 0;
+    padding: 0;
+    
+}
+.fabric_list,.item_form{
+    display: flex;
+    flex-direction: column;
+}
+.fabric_item{
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    flex-direction: row;
+
+}
+.item_part{
+    /* width: 100%;
+    height: 100%; */
+    padding: 5px;
+    margin: 5px;
+}
+.table_wrapper{
+    border-radius: 5px;
+    background-color: var(--main-color);
+    box-shadow:  0 0 5px rgba(0,0,0,0.6);
+    margin: 20px;
+    min-height: 100px;
+}
+.item_wrapper,.item_wrapper_head{
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    border-bottom: dotted 1px var(--text-color1);
+
+}
+.fabric_item_cell{
+    color: var(--secondary-color);
+    padding: 5px;
+    border-right: dotted 1px var(--text-color1);
+    align-items: center;
+    text-align: center;
+
+}
+.fabric_item_cell:last-child{
+    border-right: none;
+}
+.dark_color_set{
+    background-color: var(--main-color);
+    color: var(--secondary-color);
+}
+.light_color_set{
+    background-color: var(--light-color);
+    color: var(--text-color1);
+}
+.hoverable{
+    transition: background-color 0.3s ease-in-out;
+
+}
+.hoverable:hover{
+    background-color: var(--bg-hover-color);
+    
+}
+
+.grid_table{
+    display: grid;
+    grid-template-columns:repeat(7,auto) ;
+    width: 100%;
+    grid-auto-flow: row;
+    gap: 2px;
+
+}
+.grid_table span{
+    padding: 5px 10px;
+    
+}
+.grid_table span a img{
+    width: 100px;
+    height: 60px;
+}
+.grid-fixed-head{
+    position: sticky;
+    top: 0;
+    text-align: center;
+}
+.red_flag{
+    background-color: red;
+    color: var(--light-color);
+    font-weight: bold;
+}
+
+

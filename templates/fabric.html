@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        <h1>Fabric List</h1>
+<a href="{{ url_for('.create_fabric') }}">Create New Fabric</a>
+{% include 'components/fabric_item_table.html' %}
+
+{% endblock %}
