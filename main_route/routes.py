@@ -16,8 +16,8 @@ def delete_fabric(fabric_id):
 
 @user_route.route('/', methods=['GET'])
 def fabric_list():
-    fabrics = Fabric.query.all()
-    return render_template('fabric.html', fabrics=fabrics, template='fabric')
+    fabrics = Fabric.query.filter_by(active=True).order_by(Fabric.amount).all()
+    return render_template('index.html', fabrics=fabrics, template='fabric')
 
 
 @user_route.route('/fabric/create', methods=['GET', 'POST'])
@@ -31,7 +31,7 @@ def create_fabric():
     return render_template('components/fabric_form.html')
 
 
-@user_route.route('/edit_fabric/<fabric_id>')
+@user_route.route('/fabric/<fabric_id>')
 def edit_fabric(fabric_id):
     fabric = Fabric.query.get(fabric_id)
     return render_template('components/fabric_form.html', fabric=fabric)
@@ -57,7 +57,7 @@ def save_fabric(fabric_id):
 @user_route.route('/product', methods=['GET'])
 def product_list():
     products = Product.query.all()
-    return render_template('product.html', products=products)
+    return render_template('index.html', products=products, template='product')
 
 
 @user_route.route('/product/create', methods=['GET', 'POST'])

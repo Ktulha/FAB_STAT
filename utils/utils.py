@@ -40,10 +40,11 @@ def bulk_upload_product_csv(file_path):
                 db.session.commit()
             product = db.session.query(Product).filter_by(
                 name=row['product_name'], feature_name=row['feature_name'], barcode=row['barcode']).first()
+
             if not product:
                 product = Product(name=row['product_name'], feature_name=row['feature_name'],
-                                  barcode=row['barcode'], fabric_cost=row['fabric_cost'])
-                product.fabric = fabric
+                                  barcode=row['barcode'])
+
                 db.session.add(product)
                 db.session.commit()
             else:

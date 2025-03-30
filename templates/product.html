@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
+
     <div class="container">
         <h1>Product List</h1>
-        <a href="{{ url_for('main.create_product') }}">Create New Product</a>
+        <a href="{{ url_for('.create_product') }}">Create New Product</a>
         <table>
             <thead>
                 <tr>
@@ -25,14 +17,15 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.feature_name }}</td>
                     <td>{{ product.description }}</td>
+                    <td>{{ product.fabric_cost }}</td>
+                    <td>{{ product.fabric }}</td>
+                    <td>{{ product.barcode }}</td>
                     <td>
-                        <a href="{{ url_for('main.edit_product', product_id=product.id) }}">Edit</a>
-                        <a href="{{ url_for('main.delete_product', product_id=product.id) }}">Delete</a>
+
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-</body>
-</html>
+
