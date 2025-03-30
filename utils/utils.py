@@ -1,5 +1,5 @@
 import pandas as pd
-from app.models import db, Product, Fabric
+from app.models import ProductSchema, db, Product, Fabric
 
 
 def bulk_upload_fabric_csv(file_path):
@@ -12,12 +12,17 @@ def bulk_upload_fabric_csv(file_path):
         # Iterate through the rows of the DataFrame
         for index, row in data.iterrows():
             # Create Fabric instance
-            fabric = Fabric(name=row['fabric'], amount=row['amount'],
-                            width=row['width'])
-            db.session.add(fabric)
-
-        # Commit the session to save the data
-        db.session.commit()
+            fabric = db.session.query(Fabric).filter_by(
+                name=row['fabric']).first()
+            if fabric is None:
+                fabric = Fabric(name=row['fabric'], amount=row['amount'],
+                                width=row['width'])
+                db.session.add(fabric)
+            else:
+                fabric.width = row['width']
+                fabric.amount = row['amount']
+                # Commit the session to save the data
+            db.session.commit()
         print("Bulk upload successful! Verifying inserted data...")
 
     except Exception as e:
@@ -40,17 +45,27 @@ def bulk_upload_product_csv(file_path):
                 db.session.commit()
             product = db.session.query(Product).filter_by(
                 name=row['product_name'], feature_name=row['feature_name'], barcode=row['barcode']).first()
-
             if not product:
                 product = Product(name=row['product_name'], feature_name=row['feature_name'],
                                   barcode=row['barcode'])
-
                 db.session.add(product)
-                db.session.commit()
+
             else:
                 product.fabric = fabric
-                product.fabric_cost = row['fabric_cost']
-                db.session.commit()
+
+            db.session.commit()
+
+            if (
+                pr_schema := db.session.query(ProductSchema)
+                .filter_by(product_id=product.id, fabric_id=fabric.id)
+                .first()
+            ):
+                pr_schema.fabric_cost = row['fabric_cost']
+            else:
+                pr_schema = ProductSchema(
+                    product_id=product.id, fabric_id=fabric.id, fabric_cost=row['fabric_cost'])
+                db.session.add(pr_schema)
+            db.session.commit()
 
         print("Bulk upload successful! Verifying inserted data...")
     except Exception as e:

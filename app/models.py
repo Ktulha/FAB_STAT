@@ -49,7 +49,7 @@ class Product(db.Model):
 
     active = db.Column(db.Boolean, default=True)
     __table_args__ = (UniqueConstraint(
-        'name', 'feature_name', name='_full_product_name'),)
+        'name', 'feature_name', 'barcode', name='_full_product_name'),)
 
 
 class Sales(db.Model):
