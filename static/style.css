@@ -78,6 +78,7 @@ body {
 }
 .hoverable:hover{
     background-color: var(--bg-hover-color);
+    color: var(--text-color1);
     
 }
 
