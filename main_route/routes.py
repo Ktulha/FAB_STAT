@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
+from sqlalchemy import desc
 from app.models import db, Product, Fabric
 
 user_route = Blueprint('main', __name__)
@@ -16,7 +17,8 @@ def delete_fabric(fabric_id):
 
 @user_route.route('/', methods=['GET'])
 def fabric_list():
-    fabrics = Fabric.query.filter_by(active=True).order_by(Fabric.amount).all()
+    fabrics = Fabric.query.filter_by(active=True).order_by(
+        Fabric.amount, desc(Fabric.speed)).all()
     return render_template('index.html', fabrics=fabrics, template='fabric')
 
 

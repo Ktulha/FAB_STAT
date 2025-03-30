@@ -13,7 +13,7 @@ class Fabric(db.Model):
     picture = db.Column(db.String(150), nullable=True)
     width = db.Column(db.Double, nullable=True)
     density = db.Column(db.Double, nullable=True)
-    amount = db.Column(db.Double, nullable=True)
+    amount = db.Column(db.Double, nullable=True, default=0)
     speed = db.Column(db.Double, nullable=True)
     stock = db.Column(db.Double, nullable=True)
     active = db.Column(db.Boolean, default=True)
