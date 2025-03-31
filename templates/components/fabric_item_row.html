@@ -1,10 +1,10 @@
 
 
-    <span class="light_color_set hoverable"><a href="/fabric/{{ fabric.id }}" >{{ fabric.name }}</a></span>
+<a class="light_color_set hoverable" href="/fabric/{{ fabric.id }}" >{{ fabric.name }}</a>
     <span class="light_color_set hoverable"><a href=""><img src="{{ fabric.picture }}" alt="{{ fabric.picture }}"/></a></span>
     <span class="light_color_set hoverable">{{ fabric.amount }}</span>
-    <span class="light_color_set hoverable"><a class="badge {{'badge-primary' if fabric.product_schemas|length else 'badge-danger'}}" href="">{{ fabric.product_schemas|length }}</a></span>
-    <a href="#" class="badge badge-primary"></a>
+    <span class="light_color_set hoverable"><h3><a class="badge {{'badge-primary' if fabric.products|length else 'badge-danger'}}" href="{{ url_for('.fabric_products', fabric_id= fabric.id ) }}">{{ fabric.products|length }}</a></h3></span>
+    
     <span class="light_color_set hoverable {{ '' if fabric.speed else 'red_flag' }} ">{{ fabric.speed if fabric.speed else 0 }}</span>
     <span class="light_color_set hoverable  {{ '' if fabric.stock else 'red_flag' }} ">{{ fabric.stock if fabric.stock else 0}}</span>
     <span class="light_color_set hoverable"><a href="fabric_shipment/{{ fabric.id }}">{{ fabric.closest_supply }}</a></span>

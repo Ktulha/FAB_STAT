@@ -62,6 +62,13 @@ def product_list():
     return render_template('index.html', products=products, template='product')
 
 
+@user_route.route('/fabric_products/<fabric_id>')
+def fabric_products(fabric_id):
+    fabric = Fabric.query.get(fabric_id)
+    products = fabric.products
+    return render_template('index.html', products=products, template='product')
+
+
 @user_route.route('/product/create', methods=['GET', 'POST'])
 def create_product():
     if request.method == 'POST':

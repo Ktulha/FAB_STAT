@@ -71,6 +71,7 @@ body {
 .light_color_set{
     background-color: var(--light-color);
     color: var(--text-color1);
+    padding: 10px 5px;
 }
 .hoverable{
     transition: background-color 0.3s ease-in-out;

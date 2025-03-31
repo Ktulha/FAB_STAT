@@ -1,6 +1,12 @@
 import pandas as pd
 from app.models import ProductSchema, db, Product, Fabric
 
+# flask shell
+# from utils.utils import bulk_upload_fabric_csv
+# from utils.utils import bulk_upload_product_csv
+# bulk_upload_product_csv('product.csv')
+# bulk_upload_fabric_csv('fabric.csv')
+
 
 def bulk_upload_fabric_csv(file_path):
     print("Starting bulk upload...")
