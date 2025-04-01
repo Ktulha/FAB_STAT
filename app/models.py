@@ -30,12 +30,17 @@ class Fabric(db.Model):
     stock = db.Column(db.Double, nullable=True, default=0)
     active = db.Column(db.Boolean, default=True)
     products = db.relationship(
-        'Product', secondary='product_schema', backref='fabrics')
+        'Product', secondary='product_schema', backref=db.backref('fabrics', lazy=True))
+    schemas = db.relationship(
+        'ProductSchema', backref='fabrics', viewonly=True)
 
     # Additional attributes can be added here as needed
 
     def __str__(self):
         return f"{self.name}"
+
+    def update_speed(self):
+        pass
 
 
 class Product(db.Model):
@@ -45,9 +50,10 @@ class Product(db.Model):
     feature_name = db.Column(db.String(100), nullable=True)
     description = db.Column(db.String(100), nullable=True)
     barcode = db.Column(db.String(30), nullable=False)
-    # fabrics = db.relationship(
-    #     'Fabric', secondary='product_schema', backref='products')
 
+    schemas = db.relationship(
+        'ProductSchema', backref='products', viewonly=True)
+    sale_speed = db.Column(db.Double, nullable=True, default=0)
     active = db.Column(db.Boolean, default=True)
     __table_args__ = (UniqueConstraint(
         'name', 'feature_name', 'barcode', name='_full_product_name'),)

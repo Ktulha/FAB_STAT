@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import desc
-from app.models import db, Product, Fabric
+from app.models import ProductSchema, db, Product, Fabric
 
 user_route = Blueprint('main', __name__)
 
@@ -35,8 +35,8 @@ def create_fabric():
 
 @user_route.route('/fabric/<fabric_id>')
 def edit_fabric(fabric_id):
-    fabric = Fabric.query.get(fabric_id)
-    return render_template('components/fabric_form.html', fabric=fabric)
+    fabric = Fabric.query.get_or_404(fabric_id)
+    return render_template('index.html', fabric=fabric, template='components/fabric_view')
 
 
 @user_route.route('/save_fabric/<fabric_id>', methods=['GET', 'POST'])
@@ -66,6 +66,7 @@ def product_list():
 def fabric_products(fabric_id):
     fabric = Fabric.query.get(fabric_id)
     products = fabric.products
+
     return render_template('index.html', products=products, template='product')
 
 

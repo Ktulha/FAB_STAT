@@ -1,0 +1,44 @@
+<div class="container-fluid detail_list">
+    <div class="item_grid">
+    <h1 class="item_head grid_row">{{ fabric.name }}</h1>
+    <img class="item_image grid_right_img" src="{{ fabric.picture }}" alt="fabric.name">
+    <div class="item_first">Описание:</div><div class="item_2 grid_3_col">{{ fabric.description }}</div>
+
+     <div class="item_first">Ширина рулона:</div> <div class="item_2">{{ fabric.width }}</div>
+     <div class="item_first">Плотность ткани:</div> <div class="item_2">{{ fabric.density }}</div>
+     <div class="item_first">Остаток на складе:</div> <div class="item_2">{{ fabric.amount }}</div>
+     <div class="item_first">Скорость расхода:</div> <div class="item_2">{{ fabric.speed }}</div>
+     <div class="item_first">Запас в днях:</div> <div class="item_2">{{ fabric.stock }}</div>
+    </div>
+     
+     {% if fabric.products %}
+      <div class="item_grid">   
+        <h2 class="grid_row">Список товаров</h2> 
+        <div class="item_">Штрихкод</div>
+        <div class="item_">Наименование</div>
+        <div class="item_">Характеристика</div>
+        <div class="item_">Расход ткани</div>
+        <div class="item_">Скорость продаж</div>
+        <div class="item_">Ежедневный расход</div>
+            {% for product in fabric.products %}
+            <div class="item_first">{{ product.barcode }}</div> 
+            <div class="item_2">{{ product.name }}</div>
+            <div class="item_3">{{ product.feature_name }}  </div>
+            {% set fabric_cost=0 %}
+            {% for schema in fabric.schemas %}
+                    {% if schema.product_id==product.id %} 
+                        {% set fabric_cost=schema.fabric_cost %}
+                        <div class="item_">{{fabric_cost}}</div>
+                     {% endif %}
+            
+            {% endfor %}
+            <div class="item_">{{product.sale_speed}}</div>
+            <div class="item_">{{product.sale_speed if product.sale_speed else 0 * fabric_cost}}</div>
+            {% endfor %}
+      
+        </div>
+     {% endif %}
+
+
+     
+</div>

@@ -29,6 +29,8 @@ def bulk_upload_fabric_csv(file_path):
                 fabric.amount = row['amount']
                 # Commit the session to save the data
             db.session.commit()
+            print(fabric.name, fabric.width, fabric.amount)
+
         print("Bulk upload successful! Verifying inserted data...")
 
     except Exception as e:
